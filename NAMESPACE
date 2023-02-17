@@ -1,0 +1,4 @@
+useDynLib(vnpctest, .registration=TRUE)
+importFrom(Rcpp, evalCpp)
+export(cholesky_qVec)
+exportPattern("^[[:alpha:]]+")
