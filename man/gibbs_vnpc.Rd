@@ -25,7 +25,8 @@ gibbs_vnpc(
   coars = F,
   L = max(20, length(data)^(1/3)),
   mu_beta = rep(1e-04, ncol(data) * ncol(data) * var.order),
-  V_beta = diag(ncol(data) * ncol(data) * var.order) * 10000
+  V_beta = diag(ncol(data) * ncol(data) * var.order) * 10000,
+  sqrt_d = F
 )
 }
 \arguments{

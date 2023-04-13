@@ -214,9 +214,10 @@ llike_var_corrected <- function(FZ, ar, f_param_half, sigma, f, excludeBoundary=
 ## L_param L_f^{-1} = L_param (L_param L_Q)^{-1}
 ## --------------------
 ##
-llike_var_corrected_q <- function(FZ, ar, f_param_half, f_param_half_trans, sigma, q, excludeBoundary=T) { # see notes 20170223 for q(=tildeQ)
+llike_var_corrected_q <- function(FZ, ar, f_param_half, f_param_half_trans, sigma, q, sqrt_d, excludeBoundary=T) { # see notes 20170223 for q(=tildeQ)
   d <- ncol(FZ)
-  CFZ <- get_CFZ_q(FZ, q, f_param_half, excludeBoundary)
+  if (sqrt_d) CFZ <- get_CFZ_q_sq(FZ, q, f_param_half, excludeBoundary)
+  else CFZ <- get_CFZ_q(FZ, q, f_param_half, excludeBoundary)
   FCFZ <- Re(midft(CFZ))
   ll <- 2 * sum(-logdet_cube(q,excludeBoundary)/2) + # times 2, because of functional determinant in real-valued formulation
     llike_var_partial(FCFZ, ar, sigma=sigma)

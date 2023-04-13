@@ -18,7 +18,10 @@ arma::cx_mat get_CFZ(arma::cx_mat FZ, Rcpp::ComplexVector f_half_inv_,
                      Rcpp::ComplexVector f_param_half_, bool excludeBoundary);
 arma::cx_mat get_CFZ_q(arma::cx_mat FZ, Rcpp::ComplexVector q_,
                        Rcpp::ComplexVector f_param_half_, bool excludeBoundary);
+arma::cx_mat get_CFZ_q_sq(arma::cx_mat FZ, Rcpp::ComplexVector q_,
+                       Rcpp::ComplexVector f_param_half_, bool excludeBoundary);					   
 arma::cx_cube chol_cube(Rcpp::ComplexVector f_, bool excludeBoundary);
+arma::cx_cube sqrt_cube(Rcpp::ComplexVector f_, bool excludeBoundary);
 arma::cx_cube inv_cube(Rcpp::ComplexVector f_, bool excludeBoundary);
 arma::cx_cube mult_cube(Rcpp::ComplexVector a_, Rcpp::ComplexVector b_);
 Rcpp::NumericVector logdet_cube(Rcpp::ComplexVector f_, bool excludeBoundary);

@@ -57,6 +57,7 @@ llike_matrixGamma <- function(omega,
                                   f_param_half_trans=phi$f_param_half_trans,
                                   sigma=sigma_ar,
                                   q=f,
+                                  sqrt_d=phi$sqrt_d,
                                   excludeBoundary=excludeBoundary)
     } else {
       ll <- llike_var_corrected(FZ=FZ,

@@ -2,11 +2,11 @@
 % Please edit documentation in R/RcppExports.R
 \name{get_CFZ_q}
 \alias{get_CFZ_q}
-\title{Build the correction matrix in the frequency domain based on the q-parametrization}
+\title{Build the correction matrix in the frequency domain based on the q-parametrization with the Cholesky decomposition}
 \usage{
 get_CFZ_q(FZ, q_, f_param_half_, excludeBoundary)
 }
 \description{
-Build the correction matrix in the frequency domain based on the q-parametrization
+Build the correction matrix in the frequency domain based on the q-parametrization with the Cholesky decomposition
 }
 \keyword{internal}

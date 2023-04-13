@@ -194,6 +194,20 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// get_CFZ_q_sq
+arma::cx_mat get_CFZ_q_sq(arma::cx_mat FZ, ComplexVector q_, ComplexVector f_param_half_, bool excludeBoundary);
+RcppExport SEXP _vnpctest_get_CFZ_q_sq(SEXP FZSEXP, SEXP q_SEXP, SEXP f_param_half_SEXP, SEXP excludeBoundarySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::cx_mat >::type FZ(FZSEXP);
+    Rcpp::traits::input_parameter< ComplexVector >::type q_(q_SEXP);
+    Rcpp::traits::input_parameter< ComplexVector >::type f_param_half_(f_param_half_SEXP);
+    Rcpp::traits::input_parameter< bool >::type excludeBoundary(excludeBoundarySEXP);
+    rcpp_result_gen = Rcpp::wrap(get_CFZ_q_sq(FZ, q_, f_param_half_, excludeBoundary));
+    return rcpp_result_gen;
+END_RCPP
+}
 // chol_cube
 arma::cx_cube chol_cube(ComplexVector f_, bool excludeBoundary);
 RcppExport SEXP _vnpctest_chol_cube(SEXP f_SEXP, SEXP excludeBoundarySEXP) {
@@ -203,6 +217,18 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< ComplexVector >::type f_(f_SEXP);
     Rcpp::traits::input_parameter< bool >::type excludeBoundary(excludeBoundarySEXP);
     rcpp_result_gen = Rcpp::wrap(chol_cube(f_, excludeBoundary));
+    return rcpp_result_gen;
+END_RCPP
+}
+// sqrt_cube
+arma::cx_cube sqrt_cube(ComplexVector f_, bool excludeBoundary);
+RcppExport SEXP _vnpctest_sqrt_cube(SEXP f_SEXP, SEXP excludeBoundarySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< ComplexVector >::type f_(f_SEXP);
+    Rcpp::traits::input_parameter< bool >::type excludeBoundary(excludeBoundarySEXP);
+    rcpp_result_gen = Rcpp::wrap(sqrt_cube(f_, excludeBoundary));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -451,7 +477,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"_vnpctest_acvToeplitz", (DL_FUNC) &_vnpctest_acvToeplitz, 1},
     {"_vnpctest_get_CFZ", (DL_FUNC) &_vnpctest_get_CFZ, 4},
     {"_vnpctest_get_CFZ_q", (DL_FUNC) &_vnpctest_get_CFZ_q, 4},
+    {"_vnpctest_get_CFZ_q_sq", (DL_FUNC) &_vnpctest_get_CFZ_q_sq, 4},
     {"_vnpctest_chol_cube", (DL_FUNC) &_vnpctest_chol_cube, 2},
+    {"_vnpctest_sqrt_cube", (DL_FUNC) &_vnpctest_sqrt_cube, 2},
     {"_vnpctest_inv_cube", (DL_FUNC) &_vnpctest_inv_cube, 2},
     {"_vnpctest_mult_cube", (DL_FUNC) &_vnpctest_mult_cube, 2},
     {"_vnpctest_logdet_cube", (DL_FUNC) &_vnpctest_logdet_cube, 2},

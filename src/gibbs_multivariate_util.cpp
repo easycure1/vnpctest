@@ -5,6 +5,7 @@
 using namespace std;
 using namespace Rcpp;
 
+
 //
 //' I/O: Only use *within* Rcpp in beyondWhittle(matrix_cube.cpp)
 //'
@@ -163,7 +164,7 @@ arma::cx_mat get_CFZ(arma::cx_mat FZ, ComplexVector f_half_inv_,
   return res;
 }
 
-//' Build the correction matrix in the frequency domain based on the q-parametrization
+//' Build the correction matrix in the frequency domain based on the q-parametrization with the Cholesky decomposition
 //' @keywords internal
 // [[Rcpp::export]]
 arma::cx_mat get_CFZ_q(arma::cx_mat FZ, ComplexVector q_,
@@ -176,10 +177,30 @@ arma::cx_mat get_CFZ_q(arma::cx_mat FZ, ComplexVector q_,
     res.row(FZ.n_rows-1) = arma::cx_rowvec(FZ.n_cols, arma::fill::zeros);
   }
   for (unsigned j=excludeBoundary; j<FZ.n_rows-excludeBoundary; ++j) {
-    res.row(j) = (
-      f_param_half.slice(j) *
-        arma::inv(f_param_half.slice(j) * trans(arma::chol(q.slice(j)))) *
-        FZ.row(j).st()).st();
+      res.row(j) = (
+        f_param_half.slice(j) *
+          arma::inv(f_param_half.slice(j) * trans(arma::chol(q.slice(j)))) *
+          FZ.row(j).st()).st();
+  }
+  return res;
+}
+
+//' Build the correction matrix in the frequency domain based on the q-parametrization with square root of matrices
+//' @keywords internal
+// [[Rcpp::export]]
+arma::cx_mat get_CFZ_q_sq(arma::cx_mat FZ, ComplexVector q_,
+                       ComplexVector f_param_half_, bool excludeBoundary) {
+  const arma::cx_cube q = cx_cube_from_ComplexVector(q_);
+  const arma::cx_cube f_param_half = cx_cube_from_ComplexVector(f_param_half_);
+  arma::cx_mat res(FZ.n_rows, FZ.n_cols);
+  if (excludeBoundary) {
+    res.row(0) = arma::cx_rowvec(FZ.n_cols, arma::fill::zeros);
+    res.row(FZ.n_rows-1) = arma::cx_rowvec(FZ.n_cols, arma::fill::zeros);
+  }
+  for (unsigned j=excludeBoundary; j<FZ.n_rows-excludeBoundary; ++j) {
+      res.row(j) = (
+        f_param_half.slice(j) * arma::inv(arma::sqrtmat(f_param_half.slice(j) *
+          q.slice(j) * f_param_half.slice(j))) * FZ.row(j).st()).st();
   }
   return res;
 }
@@ -195,7 +216,23 @@ arma::cx_cube chol_cube(ComplexVector f_, bool excludeBoundary) { // ok
     f_half.slice(f.n_slices-1) = arma::cx_mat(f.n_rows, f.n_cols, arma::fill::zeros);
   }
   for (unsigned j=excludeBoundary; j < f.n_slices-excludeBoundary; ++j) {
-    f_half.slice(j) = trans(arma::chol(f.slice(j)));
+      f_half.slice(j) = trans(arma::chol(f.slice(j)));
+  }
+  return f_half;
+}
+
+//' Square root of a matrix array. See Remark 5.2
+//' @keywords internal
+// [[Rcpp::export]]
+arma::cx_cube sqrt_cube(ComplexVector f_, bool excludeBoundary) { // ok
+  const arma::cx_cube f = cx_cube_from_ComplexVector(f_);
+  arma::cx_cube f_half(f.n_rows, f.n_cols, f.n_slices); // Carful: No fill
+  if (excludeBoundary) {
+    f_half.slice(0) = arma::cx_mat(f.n_rows, f.n_cols, arma::fill::zeros);
+    f_half.slice(f.n_slices-1) = arma::cx_mat(f.n_rows, f.n_cols, arma::fill::zeros);
+  }
+  for (unsigned j=excludeBoundary; j < f.n_slices-excludeBoundary; ++j) {
+      f_half.slice(j) = trans(arma::sqrtmat(f.slice(j)));
   }
   return f_half;
 }

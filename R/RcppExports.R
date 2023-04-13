@@ -101,16 +101,28 @@ get_CFZ <- function(FZ, f_half_inv_, f_param_half_, excludeBoundary) {
     .Call(`_vnpctest_get_CFZ`, FZ, f_half_inv_, f_param_half_, excludeBoundary)
 }
 
-#' Build the correction matrix in the frequency domain based on the q-parametrization
+#' Build the correction matrix in the frequency domain based on the q-parametrization with the Cholesky decomposition
 #' @keywords internal
 get_CFZ_q <- function(FZ, q_, f_param_half_, excludeBoundary) {
     .Call(`_vnpctest_get_CFZ_q`, FZ, q_, f_param_half_, excludeBoundary)
+}
+
+#' Build the correction matrix in the frequency domain based on the q-parametrization with square root of matrices
+#' @keywords internal
+get_CFZ_q_sq <- function(FZ, q_, f_param_half_, excludeBoundary) {
+    .Call(`_vnpctest_get_CFZ_q_sq`, FZ, q_, f_param_half_, excludeBoundary)
 }
 
 #' Cholesky docomposition representation of a matrix array. See Remark 5.2
 #' @keywords internal
 chol_cube <- function(f_, excludeBoundary) {
     .Call(`_vnpctest_chol_cube`, f_, excludeBoundary)
+}
+
+#' Square root of a matrix array. See Remark 5.2
+#' @keywords internal
+sqrt_cube <- function(f_, excludeBoundary) {
+    .Call(`_vnpctest_sqrt_cube`, f_, excludeBoundary)
 }
 
 #' Inverse matrices of a matrix array

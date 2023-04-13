@@ -56,11 +56,11 @@ gibbs_m_nuisance <- function(data,
   d <- ncol(data)
   n <- nrow(data)
 
-  if ((n%%2) != 0) {
-    TXT <- "TODO: Adjust llike_whittle in gibbs_multivariate_util.R for odd lengths.
-    There may also be more adjustments needed in the code framework."
-    stop(TXT)
-  }
+  #if ((n%%2) != 0) {
+  #  TXT <- "TODO: Adjust llike_whittle in gibbs_multivariate_util.R for odd lengths.
+  #  There may also be more adjustments needed in the code framework."
+  #  stop(TXT)
+  #}
 
   # MCMC parameters
   stopifnot(!is.null(mcmc_params$Ntotal)); stopifnot(mcmc_params$Ntotal>0)
@@ -120,6 +120,8 @@ gibbs_m_nuisance <- function(data,
     prior.q <- prior_params$prior.q
     stopifnot(!is.null(prior_params$var.order)); stopifnot(prior_params$var.order>0)
     var.order <- prior_params$var.order
+    stopifnot(!is.null(prior_params$sqrt_d))
+    sqrt_d <- prior_params$sqrt_d
     # not implmeneted yet
     # stopifnot(!is.null(prior_params$alpha.toggle))
     # alpha.toggle <- prior_params$alpha.toggle
@@ -241,7 +243,8 @@ gibbs_m_nuisance <- function(data,
       param__phi[,,1] <- phiFromBeta_normalInverseWishart(param__beta[,1], d, var.order)
       sigma.fit <- a1$var.pred
       V_beta_inv <- solve(V_beta)
-      f_param_half <- chol_cube(psd_varma(lambda, param__phi[,,1], sigma=sigma.fit)$psd, excludeBoundary=F)
+      suppressWarnings(if (sqrt_d) f_param_half <- sqrt_cube(psd_varma(lambda, param__phi[,,1], sigma=sigma.fit)$psd, excludeBoundary=F)
+      else f_param_half <- chol_cube(psd_varma(lambda, param__phi[,,1], sigma=sigma.fit)$psd, excludeBoundary=F), classes='warning')
       ##
       ## NOTE: a bit abuse of notation for phi:
       ## - Parse f_param_half to likelihood to save redundant computations
@@ -252,13 +255,15 @@ gibbs_m_nuisance <- function(data,
                       f_param_half_trans=trans_cube(f_param_half),
                       beta=param__beta[,1],  ##
                       mu_beta=mu_beta,       ## include stuff for prior computation, iff toggle
-                      V_beta_inv=V_beta_inv) ##
+                      V_beta_inv=V_beta_inv,
+                      sqrt_d=sqrt_d) ##
     } else {
       ##
       ## NOTE: a bit abuse of notation for phi:
       ## Parse f_param_half to likelihood to save redundant computations
       ##
-      f_param_half <- chol_cube(psd_varma(lambda, phi.fit, sigma=sigma.fit)$psd, excludeBoundary=F)
+      suppressWarnings(if (sqrt_d) f_param_half <- sqrt_cube(psd_varma(lambda, phi.fit, sigma=sigma.fit)$psd, excludeBoundary=F)
+      else f_param_half <- chol_cube(psd_varma(lambda, phi.fit, sigma=sigma.fit)$psd, excludeBoundary=F), classes='warning')
       phi.fit <- list(ar=phi.fit,
                       f_param_half=f_param_half,
                       f_param_half_trans=trans_cube(f_param_half))
@@ -591,13 +596,15 @@ gibbs_m_nuisance <- function(data,
           rejectedPhi <- T
         }
         if (!rejectedPhi) {
-          f_param_half.star <- chol_cube(f_param.star, excludeBoundary=F)
+          suppressWarnings(if (sqrt_d) f_param_half.star <- sqrt_cube(f_param.star, excludeBoundary=F)
+          else f_param_half.star <- chol_cube(f_param.star, excludeBoundary=F), classes='warning')
           phi.fit.star <- list(ar=param__phi.star,
                                f_param_half=f_param_half.star,
                                f_param_half_trans=trans_cube(f_param_half.star),
                                beta=param__beta.star,  ##
                                mu_beta=mu_beta,        ## include stuff for prior computation, too
-                               V_beta_inv=V_beta_inv)  ##
+                               V_beta_inv=V_beta_inv,
+                               sqrt_d=sqrt_d)  ##
           f.phi.star <- lpost_matrixGamma(omega=omega,
                                           FZ=FZ,
                                           r=r[,i+1],
@@ -783,13 +790,15 @@ gibbs_m_nuisance <- function(data,
 
   # Corrected (not toggled yet)
   if (corrected && prior.q && (!toggle)) {
-    f_param_half <- chol_cube(psd_varma(lambda, phi.fit$ar, sigma=sigma.fit)$psd, excludeBoundary=F)
+    suppressWarnings(if (sqrt_d) f_param_half <- sqrt_cube(psd_varma(lambda, phi.fit$ar, sigma=sigma.fit)$psd, excludeBoundary=F)
+    else f_param_half <- chol_cube(psd_varma(lambda, phi.fit$ar, sigma=sigma.fit)$psd, excludeBoundary=F), classes='warning')
     f_param_half_trans <- trans_cube(f_param_half)
   }
   for (isample in 1:length(keep)) {
     if (corrected && prior.q) {
       if (toggle) {
-        f_param_half <- chol_cube(psd_varma(lambda, param__phi[,,isample], sigma=sigma.fit)$psd, excludeBoundary=F)
+        suppressWarnings(if (sqrt_d) f_param_half <- sqrt_cube(psd_varma(lambda, param__phi[,,isample], sigma=sigma.fit)$psd, excludeBoundary=F)
+        else f_param_half <- chol_cube(psd_varma(lambda, param__phi[,,isample], sigma=sigma.fit)$psd, excludeBoundary=F), classes='warning')
         f_param_half_trans <- trans_cube(f_param_half)
       }
       q_sample <- get_f_matrix(U[,,,isample], r[,isample], Z[,isample], k[,isample], db.list, prior.cholesky)
@@ -811,8 +820,8 @@ gibbs_m_nuisance <- function(data,
   fpsd.s <- apply(fpsd.sample, c(1,2,3), median)
   fpsd.mean <- apply(fpsd.sample, c(1,2,3), mean)
   # pointwise 90%
-  fpsd.s05 <- apply(fpsd.sample, c(1,2,3), quantile, 0.05)
-  fpsd.s95 <- apply(fpsd.sample, c(1,2,3), quantile, 0.95)
+  fpsd.s05 <- apply(fpsd.sample, c(1,2,3), quantile, 0.05, na.rm=T)
+  fpsd.s95 <- apply(fpsd.sample, c(1,2,3), quantile, 0.95, na.rm=T)
   # # pointwise 95%
   # fpsd.s025 <- apply(fpsd.sample, c(1,2,3), quantile, 0.025)
   # fpsd.s975 <- apply(fpsd.sample, c(1,2,3), quantile, 0.975)
@@ -831,8 +840,8 @@ gibbs_m_nuisance <- function(data,
 
   #squared coherence (prior squared) (median and 90% pointwise region)
   coherence.s <- apply(coherence.sample, c(1, 2), median)
-  coherence.s05 <- apply(coherence.sample, c(1, 2), quantile, 0.05)
-  coherence.s95 <- apply(coherence.sample, c(1, 2), quantile, 0.95)
+  coherence.s05 <- apply(coherence.sample, c(1, 2), quantile, 0.05, na.rm=T)
+  coherence.s95 <- apply(coherence.sample, c(1, 2), quantile, 0.95, na.rm=T)
 
   # # Construct forecasts
   # N_FORECAST <- 5
