@@ -48,7 +48,8 @@ gibbs_vnpc <- function(data,
                        coars=F,
                        L = max(20, length(data) ^ (1 / 3)),
                        mu_beta=rep(1e-4, ncol(data)*ncol(data)*var.order),
-                       V_beta=diag(ncol(data)*ncol(data)*var.order)*1e4) {
+                       V_beta=diag(ncol(data)*ncol(data)*var.order)*1e4,
+                       sqrt_d=F) {
   if (!is.matrix(data) || !is.numeric(data)) {
     stop("'data' must be numeric matrix with d columns and n rows")
   }
@@ -91,7 +92,8 @@ gibbs_vnpc <- function(data,
                        toggle=TRUE,
                        prior.q=T,
                        mu_beta=mu_beta,
-                       V_beta=V_beta)
+                       V_beta=V_beta,
+                       sqrt_d=sqrt_d)
   model_params <- psd_dummy_model()
   mcmc_VNPC <- gibbs_m_nuisance(data=data,
                            mcmc_params=mcmc_params,
