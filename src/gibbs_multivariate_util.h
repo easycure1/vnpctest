@@ -1,6 +1,11 @@
 #ifndef __GIBBS_MULTIVARIATE_UTIL_INCLUDED__
 #define __GIBBS_MULTIVARIATE_UTIL_INCLUDED__
 
+#if !defined(ARMA_WARN_LEVEL)
+  #define ARMA_WARN_LEVEL 0
+#endif
+
+
 #include <RcppArmadillo.h>
 #include <Rcpp.h>
 
