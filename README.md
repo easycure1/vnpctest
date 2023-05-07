@@ -28,7 +28,7 @@ data is available in the R package `astsa` as datasets `soi` and `rec`
 
 <div class="figure" style="text-align: center">
 
-<img src="SOI_REC.jpg" alt="The SOI and Recruitment series" width="80%" style="text-align: center" />
+<img src="SOI_REC.jpg" alt="The SOI and Recruitment series" width="80%" />
 
 <p class="caption">
 
@@ -73,11 +73,10 @@ periodogram is given in grey.
 </div>
 
 To investigate the correlation between the two series, we consider the
-squared coherence. The coherence $\kappa$ is defined as $$\begin{align*}
-\kappa(\omega|f)=\frac{f_{12}(\omega)}{(f_{11}(\omega)f_{22}(\omega))^{1/2}},\quad 0\leq\omega\leq\pi.
-\end{align*}$$ Figure <a href="#fig:Fig4">3.4</a> demonstrate the
-squared coherence of the VNPC procedure with the parametric working
-model order 5.
+squared coherence. The coherence $\kappa$ is defined as
+$$\kappa(\omega|f)=\frac{f_{12}(\omega)}{(f_{11}(\omega)f_{22}(\omega))^{1/2}},\quad 0\leq\omega\leq\pi.$$
+Figure <a href="#fig:Fig4">3.4</a> demonstrate the squared coherence of
+the VNPC procedure with the parametric working model order 5.
 
 <div class="figure" style="text-align: center">
 
