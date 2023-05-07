@@ -38,6 +38,45 @@ Figure 3.1: The SOI and Recruitment series
 
 </div>
 
+Both series are estimated simultaneously. Figures
+<a href="#fig:Fig2">3.2</a> and <a href="#fig:Fig3">3.3</a> show the
+estimates of the VNPC approach using different parametric working model
+orders p. As a comparison, we also consider the parametric vector
+autoregressive model (VAR) with the same orders.
+
+<div class="figure" style="text-align: center">
+
+<img src="SOI_Fit.jpg" alt="Spectral estimates for the SOI series by the VNPC(p) procedure (red line) and the VAR(p) procedure (black dashed line). The periodogram is given in grey." width="80%" />
+
+<p class="caption">
+
+Figure 3.2: Spectral estimates for the SOI series by the VNPC(p)
+procedure (red line) and the VAR(p) procedure (black dashed line). The
+periodogram is given in grey.
+
+</p>
+
+</div>
+
+<div class="figure" style="text-align: center">
+
+<img src="Rec_Fit.jpg" alt="Spectral estimates for the recruitment series by the VNPC(p) procedure (red line) and the VAR(p) procedure (black dashed line). The periodogram is given in grey." width="80%" />
+
+<p class="caption">
+
+Figure 3.3: Spectral estimates for the recruitment series by the VNPC(p)
+procedure (red line) and the VAR(p) procedure (black dashed line). The
+periodogram is given in grey.
+
+</p>
+
+</div>
+
+To investigate the correlation between the two series, we consider the
+squared coherence. The coherence $\kappa$ is defined as $$\begin{align*}
+\kappa(\omega|f)=\frac{f_{12}(\omega)}{(f_{11}(\omega)f_{22}(\omega))^{1/2}},\quad 0\leq\omega\leq\pi.
+\end{align*}$$
+
 # 4 References
 
 <div id="refs" class="references csl-bib-body hanging-indent"
