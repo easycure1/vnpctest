@@ -13,6 +13,22 @@ The reference of VNPC is coming soon to arXiv…
 
 # 2 A Metropolis-within-Gibbs algorithm
 
+This Section introduces the MCMC algorithm used by the VNPC approach to
+sample the joint posterior distributions of the Hpd-Gamma process
+parameters $\mathbf{\Phi}$, the number of Bernstein polynomials $k$ and
+the coefficient matrices of the parametric VAR working model
+$\underline{\boldsymbol{B}}$. In particular, $\mathbf{\Phi}$ is
+hierachically parametrised by $r_{l}$’s, $x_{l}$’s and
+$\boldsymbol{U}_{l}$’s; furthermore, we employ the approach proposed by
+Mittelbach et al. (2012) (see its Section IV) to reparametrise
+$\boldsymbol{U}_{l}$’s by some hyperspherical coordinates $\varphi_{l}$’
+s. For more details, please see Section 5.2 in ??? (upcoming thesis). It
+should note that there are no recognised distributions for the full
+conditional posterior, so the classic Gibbs sampler is not suitable here
+for updating the parameter values. As a result, we use a
+Metropolis-Hastings step to achieve the updates, and a
+Metropolis-within-Gibbs algorithm is proposed to be used.
+
 # 3 The Southern Oscillation example
 
 Here are the estimates for the famous bivariate Southern Oscillation
@@ -118,6 +134,15 @@ credible region is in shaded pink.
 
 <div id="refs" class="references csl-bib-body hanging-indent"
 line-spacing="2">
+
+<div id="ref-mittelbach2012" class="csl-entry">
+
+Mittelbach, M., Matthiesen, B., & Jorswieck, E. A. (2012). Sampling
+uniformly from the set of positive definite matrices with trace
+constraint. *IEEE Trans. Signal Process.*, *60(5)*, 2167–2179.
+[10.1109/TSP.2012.2186447](https://10.1109/TSP.2012.2186447)
+
+</div>
 
 <div id="ref-shumway2011" class="csl-entry">
 
