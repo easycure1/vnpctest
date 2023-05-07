@@ -75,7 +75,24 @@ periodogram is given in grey.
 To investigate the correlation between the two series, we consider the
 squared coherence. The coherence $\kappa$ is defined as $$\begin{align*}
 \kappa(\omega|f)=\frac{f_{12}(\omega)}{(f_{11}(\omega)f_{22}(\omega))^{1/2}},\quad 0\leq\omega\leq\pi.
-\end{align*}$$
+\end{align*}$$ Figure <a href="#fig:Fig4">3.4</a> demonstrate the
+squared coherence of the VNPC procedure with the parametric working
+model order 5.
+
+<div class="figure" style="text-align: center">
+
+<img src="SOI_Rec_Squared_Coherency_VNPC_5__chol.jpg" alt="Estimated squared coherence for the SOI and recruitment series by the VNPC procedure with a parametric working model with order 5. The posterior median is given by the black line and the pointwise 90% credible region is in shaded pink." width="80%" />
+
+<p class="caption">
+
+Figure 3.4: Estimated squared coherence for the SOI and recruitment
+series by the VNPC procedure with a parametric working model with order
+5. The posterior median is given by the black line and the pointwise 90%
+credible region is in shaded pink.
+
+</p>
+
+</div>
 
 # 4 References
 
