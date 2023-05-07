@@ -42,7 +42,12 @@ Both series are estimated simultaneously. Figures
 <a href="#fig:Fig2">3.2</a> and <a href="#fig:Fig3">3.3</a> show the
 estimates of the VNPC approach using different parametric working model
 orders p. As a comparison, we also consider the parametric vector
-autoregressive model (VAR) with the same orders.
+autoregressive model (VAR) with the same orders. Figure
+<a href="#fig:Fig4">3.4</a> gives the psterior credible regions for both
+series. We consider the pointwise and uniform regions for the VNPC
+procedure with parametric working model order $5$. For the definitions
+of these two regions, see ??? (upcoming thesis). Furthermore, the
+cosspectrum and the quadrature spectrum are also given.
 
 <div class="figure" style="text-align: center">
 
@@ -72,10 +77,26 @@ periodogram is given in grey.
 
 </div>
 
+<div class="figure" style="text-align: center">
+
+<img src="SOI_Rec_VNPC_05.jpg" alt="Posterior credible regions for the SOI and recruitment series for the VNPC procedure with a parametric working model with order 5. Pointwise 90% region is visualised in shaded pink and uniform 90% region is in shaded blue. The posterior median is given by the black solid line and the periodogram is shown in grey." width="80%" />
+
+<p class="caption">
+
+Figure 3.4: Posterior credible regions for the SOI and recruitment
+series for the VNPC procedure with a parametric working model with order
+5. Pointwise 90% region is visualised in shaded pink and uniform 90%
+region is in shaded blue. The posterior median is given by the black
+solid line and the periodogram is shown in grey.
+
+</p>
+
+</div>
+
 To investigate the correlation between the two series, we consider the
 squared coherence. The coherence $\kappa$ is defined as
-$$\kappa(\omega|f)=\frac{f_{12}(\omega)}{(f_{11}(\omega)f_{22}(\omega))^{1/2}},\quad 0\leq\omega\leq\pi.$$
-Figure <a href="#fig:Fig4">3.4</a> demonstrate the squared coherence of
+$$\kappa(\omega|\boldsymbol{f})=\frac{f_{12}(\omega)}{(f_{11}(\omega)f_{22}(\omega))^{1/2}},\quad 0\leq\omega\leq\pi.$$
+Figure <a href="#fig:Fig5">3.5</a> demonstrates the squared coherence of
 the VNPC procedure with the parametric working model order 5.
 
 <div class="figure" style="text-align: center">
@@ -84,7 +105,7 @@ the VNPC procedure with the parametric working model order 5.
 
 <p class="caption">
 
-Figure 3.4: Estimated squared coherence for the SOI and recruitment
+Figure 3.5: Estimated squared coherence for the SOI and recruitment
 series by the VNPC procedure with a parametric working model with order
 5. The posterior median is given by the black line and the pointwise 90%
 credible region is in shaded pink.
