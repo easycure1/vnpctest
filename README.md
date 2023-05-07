@@ -28,7 +28,7 @@ data is available in the R package `astsa` as datasets `soi` and `rec`
 
 <div class="figure" style="text-align: center">
 
-<img src="SOI_REC.jpg" alt="The SOI and Recruitment series" width="80%" style="position:center" />
+<img src="SOI_REC.jpg" alt="The SOI and Recruitment series" width="80%" style="text-align: center" />
 
 <p class="caption">
 
