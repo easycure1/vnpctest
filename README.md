@@ -28,58 +28,80 @@ We represent $\boldsymbol{U_{l}}$’s by some hyperspherical coordinates
 $\varphi_{l}$’ s introduced by Mittelbach et al. (2012) in its Section
 IV. To elaborate, consider the Cholesky decomposition of
 $\boldsymbol{U}$ such that
-$\boldsymbol{U}=\boldsymbol{U}_{L}\boldsymbol{U}_{L}^{*}$ with the lower
-triangular matrix $\boldsymbol{U}_{L}$ as
-$$\boldsymbol{U}:=\begin{pmatrix}y_{1} & 0 & 0 & \cdots & 0\\
+$\boldsymbol{U}=\boldsymbol U_L\boldsymbol U_{L}^{*}$ with the lower
+triangular matrix $\boldsymbol U_{L}$ as 
+```math
+\boldsymbol{U}:=\begin{pmatrix}y_{1} & 0 & 0 & \cdots & 0\\
     y_{2}-iy_{3} & y_{4} & 0 & \cdots & 0\\
     y_{5}-iy_{6} & y_{7}-iy_{8} & y_{9} & \cdots & 0\\
     \vdots & \vdots & \vdots & \ddots & \vdots\\
-    y_{(d-1)^{2}+1}-iy_{(d-1)^{2}+2} & y_{(d-1)^{2}+3}-iy_{(n-1)^{2}+4} & y_{(d-1)^{2}+5}-iy_{(d-1)^{2}+6} & \cdots & y_{d^{2}}\end{pmatrix}$$.
+    y_{(d-1)^{2}+1}-iy_{(d-1)^{2}+2} & y_{(d-1)^{2}+3}-iy_{(n-1)^{2}+4} & y_{(d-1)^{2}+5}-iy_{(d-1)^{2}+6} & \cdots & y_{d^{2}}\end{pmatrix}.
+```
+
 According to the definition of $\boldsymbol{U}$, it holds that
-$$\text{tr}(\boldsymbol{U})=\text{tr}(\boldsymbol{U}_{L}\boldsymbol{U}^{*})=\sum_{k=1}^{d^{2}}y_{k}^{2}=1$$.
+```math
+\text{tr}(\boldsymbol{U})=\text{tr}(\boldsymbol{U}_{L}\boldsymbol{U}^{*})=\sum_{k=1}^{d^{2}}y_{k}^{2}=1.
+```
 Thus, $y_{1},...,y_{d^{2}}$ can be represented by the hyperspherical
 coordinates $\varphi_{1},...,\varphi_{d^{2}}$ as
-$$u_{k}=\begin{dcases}\cos(\varphi_{k})\prod_{l=1}^{k-1}\sin(\varphi_{l}),\quad &k=1,...,d^{2}-1\\
-    \prod_{l=1}^{k-1}\sin(\varphi_{l}),&k=d^{2},\end{dcases}$$ with the
-range of $\varphi_{k}$ for $k=1,2,...,d^{2}-1$ given by
-$$ \mathcal{I}_{k}=\begin{dcases}
+```math
+u_{k}=\begin{dcases}\cos(\varphi_{k})\prod_{l=1}^{k-1}\sin(\varphi_{l}),\quad &k=1,...,d^{2}-1\\
+    \prod_{l=1}^{k-1}\sin(\varphi_{l}),&k=d^{2},\end{dcases}
+```
+with the range of $\varphi_{k}$ for $k=1,2,...,d^{2}-1$ given by
+```math
+\mathcal{I}_{k}=\begin{dcases}
     \left(0,\frac{\pi}{2}\right),\quad&\text{if $k=j^{2}$ for $j=1,2,..,(d-1)$}\\
     (0,\pi),&\text{else}.
-    \end{dcases}$$ Denote by $\boldsymbol{U}=(u_{ij})_{i,j=1}^{d}$.
+    \end{dcases}
+```
+Denote by $\boldsymbol{U}=(u_{ij})_{i,j=1}^{d}$.
 Consider the mapping
-$$\tilde{T}:\mathbb{R}^{d^{2}-1}\rightarrow\mathcal{I}:=\otimes_{k=1}^{d^{2}-1}\mathcal{I}_{k}:$$
-$$
-    (u_{11},\mathfrak{R}(u_{12}),\mathfrak{I}(u_{12}),u_{22},...,\mathfrak{R}(u_{(d-1),d}),\mathfrak{I}(u_{(d-1),d}))\mapsto\underline{\varphi}:=(\varphi_{1},...,\varphi_{d^{2}-1}),$$
+```math
+\begin{align*}
+\tilde{T}:\mathbb{R}^{d^{2}-1}\rightarrow\mathcal{I}:=\otimes_{k=1}^{d^{2}-1}\mathcal{I}_{k}:(u_{11},\mathfrak{R}(u_{12}),\mathfrak{I}(u_{12}),u_{22},...,\mathfrak{R}(u_{(d-1),d}),\mathfrak{I}(u_{(d-1),d}))\mapsto\underline{\varphi}:=(\varphi_{1},...,\varphi_{d^{2}-1}),
+\end{align*}
+```
 such that the upper triangular elements of $\boldsymbol{U}$ without
-$u_{dd}$ are transformed to the hyperspherical coordinates. Then the
-absolute value of the determinant of the Jacobian
-$\boldsymbol{J}_{\tilde{T}^{-1}}$ for the inverse mapping
+$u_{dd}$ are transformed to the hyperspherical coordinates. Then the absolute value of the determinant of the Jacobian $\boldsymbol J_{\tilde{T}^{-1}}$ for the inverse mapping
 $\tilde{T}^{-1}$ is given by
-$$|\boldsymbol{J}_{\tilde{T}^{-1}}(\underline{\varphi})|=\prod_{k=1}^{d^{2}-1}\cos^{p_{k}}(\varphi_{k})\sin^{q_{k}}(\varphi_{k})$$
-with the exponents $$p_{k}=\begin{dcases}
+```math
+|\boldsymbol{J}_{\tilde{T}^{-1}}(\underline{\varphi})|=\prod_{k=1}^{d^{2}-1}\cos^{p_{k}}(\varphi_{k})\sin^{q_{k}}(\varphi_{k})
+```
+with the exponents
+```math
+p_{k}=\begin{dcases}
     2(d-j)+1,\quad&\text{if $k=j^{2}, j=1,2,...,(d-1)$}\\
     0,&\text{else},
-    \end{dcases}$$ and
-$$q_{k}=2(d^{2}-jd)-1-m\ \text{for $k=j^{2}+m, j=1,2,...,(d-1), m=0,1,...,2j$}.$$
+    \end{dcases}
+```
+and
+```math
+q_{k}=2(d^{2}-jd)-1-m\ \text{for $k=j^{2}+m, j=1,2,...,(d-1), m=0,1,...,2j$}.
+```
 
 Therefore, a new parametrisation of $\mathbf{\Phi}$ is given by
-$$\tilde{\underline{\Theta}}_{\mathbf{\Phi}}:=(r_{1},...,r_{L},x_{1},...,x_{L},\underline{\varphi}_{1},...,\underline{\varphi}_{L})$$.
+```math
+\tilde{\underline{\Theta}}_{\mathbf{\Phi}}:=(r_{1},...,r_{L},x_{1},...,x_{L},\underline{\varphi}_{1},...,\underline{\varphi}_{L}).
+```
 
 ## 2.2 Algorithm
 
 We begin with the initial values
-$(\underline{\tilde{\Theta}}_{\mathbf{\Phi}}^{(1)},k^{(1)},\underline{\boldsymbol{B}}^{(1)})$.
+$`(\underline{\tilde{\Theta}}_{\mathbf{\Phi}}^{(1)},k^{(1)},\underline{\boldsymbol{B}}^{(1)})`$.
 Some large values are chosen for $k^{(1)}$ and
-$\underline{\tilde{\Theta}}_{\mathbf{\Phi}}^{(1)}$, within which
+$`\underline{\tilde{\Theta}}_{\mathbf{\Phi}}^{(1)}`$, within which
 $r_{1}^{(1)},...,r_{L}^{(1)}\overset{iid}{\sim}\text{Exp}(1)$,
 $x_{1},...,x_{L}\overset{iid}{\sim}\text{Unif}(0,\pi)$ and
 $\varphi_{1}^{(1)},...,\varphi_{L}^{(1)}\overset{iid}{\sim}\text{Unif}(\mathcal{I})$
-with $\mathcal{I}=\otimes^{d^{2}-1}_{j=1}I_{j}$. The initial matrices
-for $\boldsymbol{B}_{1},..., \boldsymbol{B}_{p}$ are given by a
+with $`\mathcal{I}=\otimes^{d^{2}-1}_{j=1}I_{j}`$. The initial matrices
+for $`\boldsymbol{B}_{1},..., \boldsymbol{B}_{p}`$ are given by a
 Yule-Walker estimate. To update the value of $k$, the proposed
-$k^{*,(i+1)}$ for the MH step in the $i+1$-th iteration of the Gibbs
+$`k^{*,(i+1)}`$ for the MH step in the $i+1$-th iteration of the Gibbs
 sampler follows
-$$k^{*,(i+1)}:=\max\lbrace k_{\max}, \max\lbrace1,k^{(i)}+\lfloor\epsilon_{k}^{(i+1)}\rfloor\rbrace\rbrace,\quad\epsilon_{k}^{(i+1)}\sim\text{Cauchy}(0,1).$$
+```math
+k^{*,(i+1)}:=\max\lbrace k_{\max}, \max\lbrace1,k^{(i)}+\lfloor\epsilon_{k}^{(i+1)}\rfloor\rbrace\rbrace,\quad\epsilon_{k}^{(i+1)}\sim\text{Cauchy}(0,1).
+```
 $k_{\max}$ should be some large finite integer, and it controls the
 upper bound for the polynomial degree of the Bernstein-Hpd-Gamma
 mixture. Clearly, to prevent oversmoothing, the value of $k_{\max}$
@@ -93,7 +115,9 @@ To draw the radial parts $r_{1},...,r_{L}$, the individual MH steps are
 used to update the $L$ values once each time. The proposed value for
 each $r_{l}$ in the $i+1$-th iteration comes from a Log-Normal
 distribution centred at the logarithmic value of the last iteration:
-$$ r^{*,(i+1)}_{l}\sim\text{LN}\left(\log(r_{l}^{(i)}),\sigma_{r_{l}}^{2}\right),\quad l=1,...,L.$$
+```math
+r^{*,(i+1)}_{l}\sim\text{LN}\left(\log(r_{l}^{(i)}),\sigma_{r_{l}}^{2}\right),\quad l=1,...,L.
+```
 It is well known that a well-proposed variance can improve the mixing
 time of a Markov chain in high dimensions, but it is also difficult to
 predetermine the value thereof. To deal with this, an adaptive
@@ -104,12 +128,16 @@ define $s_{r_{l}}:=\log(\sigma_{r_{l}})$, the logarithm of the standard
 deviation, and we update its value during the burn-in period for every
 particular number, say $M$, of iterations. We set $s_{r_{l}}^{(1)}=1$
 for all $r_{l}$’s and update each of their values in an MH step by some
-acceptance rates $$s_{r_{l}}^{(i+1)}=\begin{dcases}
+acceptance rates
+```math
+s_{r_{l}}^{(i+1)}=\begin{dcases}
         s_{r_{l}}^{(i)}+\delta_{\text{adapt}}^{(i)},\quad a_{r_{l},M}^{(i)}>a^{*},\\
         s_{r_{l}}^{(i)}-\delta_{\text{adapt}}^{(i)},\quad a_{r_{l},M}^{(i)}<a^{*},
-    \end{dcases}$$ with $a_{r_{l},M}^{(i)}$ being the acceptance rate
+    \end{dcases}
+```
+with $a_{r_{l},M}^{(i)}$ being the acceptance rate
 for the $i$-th adaption batch of the iterations during the burn-in
-period and $a^{*}\in(0,1)$ being the target acceptance rate and
+period and $`a^{*}\in(0,1)`$ being the target acceptance rate and
 $\delta_{\text{adapt}}^{(i)}>0$ being the adaption step width. To decide
 the value of $s_{r_{l}}$ increases or decreases by
 $\delta_{\text{adapt}}$, we can set the target acceptance rate $a^{*}$
@@ -126,49 +154,60 @@ We update the values of $x_{1},...,x_{L}$ on $[0,\pi]$ in each iteration
 with the individual MH steps analogously to the similar steps used in
 Choudhuri et al. (2004) for the mass location parameter of a Dirichlet
 process, in which the $x_{l}$’s are defined on $[0,1]$. The idea is
-taking a candidate value $\tilde{x}_{l}^{*,(i+1)}$ of $x_{l}^{*,(i+1)}$
+taking a candidate value $`\tilde{x}_{l}^{*,(i+1)}`$ of $`x_{l}^{*,(i+1)}`$
 from a uniform distribution on
 $[x_{l}^{(i)}-\epsilon_{x_{l}}, x_{l}^{(i)}+\epsilon_{x_{l}}]$, then the
-value of $x_{l}^{*,(i+1)}$ is ensured to be on $[0, \pi]$ for different
+value of $`x_{l}^{*,(i+1)}`$ is ensured to be on $[0, \pi]$ for different
 cases of the candidate value:
-$$\tilde{x}_{l}^{*,(i+1)}:=x_{l}^{(i)}+\epsilon_{x_{l}},\quad \epsilon_{x_{l}}\sim\text{Unif}(-\delta_{x_{l}},\delta_{x_{l}}),$$
-$$
-    x_{l}^{*,(i+1)}=\begin{dcases}
+```math
+\begin{align*}
+&\tilde{x}_{l}^{*,(i+1)}:=x_{l}^{(i)}+\epsilon_{x_{l}},\quad \epsilon_{x_{l}}\sim\text{Unif}(-\delta_{x_{l}},\delta_{x_{l}}),\\
+&x_{l}^{*,(i+1)}=\begin{dcases}
         \tilde{x}_{l}^{*,(i+1)}+\pi,\quad \tilde{x}_{l}^{*,(i+1)}<0,\\
         \tilde{x}_{l}^{*,(i+1)}-\pi,\quad \tilde{x}_{l}^{*,(i+1)}>\pi,\\
         \tilde{x}_{l}^{*,(i+1)},\quad\text{else},
-    \end{dcases}$$ and the proposal scaling is used as
+    \end{dcases}
+\end{align*}
+```
+and the proposal scaling is used as
 $\delta_{x_{l}}=\pi l/(l+2\pi)$. This fixed scaling value has been shown
 to be able to produce feasible mixing properties in practice.
 
-The hyperspherical coordinates $\underline{\varphi}_{l}$’s are sampled
+The hyperspherical coordinates $`\underline{\varphi}_{l}`$’s are sampled
 in the MH step with one block each time instead of one component
-$\varphi_{l,1}.,,,,\varphi_{l,d^{2}-1}$ of $\underline{\varphi}_{l}$
+$\varphi_{l,1}.,,,,\varphi_{l,d^{2}-1}$ of $`\underline{\varphi}_{l}`$
 each time. According to this design, the computational cost can be much
 saved, and the posterior correlation between each component of
-$\underline{\varphi}_{l}$ is also considered by the blocked sampling.
+$`\underline{\varphi}_{l}`$ is also considered by the blocked sampling.
 The proposal value of each component of
-$\underline{\varphi}_{l}^{*,(i+1)}$ is determined to be on $\mathcal{I}$
+$`\underline{\varphi}_{l}^{*,(i+1)}`$ is determined to be on $\mathcal{I}$
 based on the corresponding component of a candidate vector
-$\tilde{\underline{\varphi}}^{*,(i+1)}$, which uniformly varies from
-$\underline{\varphi}_{l}^{(i)}-\epsilon_{\underline{\varphi}_{l}}$ to
-$\underline{\varphi}_{l}^{(i)}+\epsilon_{\underline{\varphi}_{l}}$:
-$$\tilde{\underline{\varphi}}^{*,(i+1)}:=\underline{\varphi}_{l}^{(i)}+\epsilon_{\underline{\varphi}_{l}},\quad \epsilon_{\underline{\varphi}_{l},j}\overset{\text{ind.}}{\sim}\text{Unif}\left(-\delta_{\underline{\varphi}_{l}}\max(\mathcal{I}_{j}), \delta_{\underline{\varphi}_{l}}\max(\mathcal{I}_{j})\right),$$
-$$\varphi_{l,j}^{*,(i+1)}=\begin{dcases}
+$`\tilde{\underline{\varphi}}^{*,(i+1)}`$, which uniformly varies from
+$`\underline{\varphi}_{l}^{(i)}-\epsilon_{\underline{\varphi}_{l}}`$ to
+$`\underline{\varphi}_{l}^{(i)}+\epsilon_{\underline{\varphi}_{l}}`$:
+```math
+\begin{align*}
+&\tilde{\underline{\varphi}}^{*,(i+1)}:=\underline{\varphi}_{l}^{(i)}+\epsilon_{\underline{\varphi}_{l}},\quad \epsilon_{\underline{\varphi}_{l},j}\overset{\text{ind.}}{\sim}\text{Unif}\left(-\delta_{\underline{\varphi}_{l}}\max(\mathcal{I}_{j}), \delta_{\underline{\varphi}_{l}}\max(\mathcal{I}_{j})\right),\\
+&\varphi_{l,j}^{*,(i+1)}=\begin{dcases}
         \tilde{\varphi}_{l,j}^{*,(i+1)}+\max(\mathcal{I}_{j}),\quad \tilde{\varphi}_{l,j}^{*,(i+1)}<0,\\
         \tilde{\varphi}_{l,j}^{*,(i+1)}-\max(\mathcal{I}_{j}),\quad \tilde{\varphi}_{l,j}^{*,(i+1)}>\max(\mathcal{I}_{j}),\\
         \tilde{\varphi}_{l,j}^{*,(i+1)},\quad\text{else},
-    \end{dcases}$$ for $l=1,...,L$ and $j=1,...,d^{2}-1$. We globally
+    \end{dcases}
+\end{align*}
+```
+for $l=1,...,L$ and $j=1,...,d^{2}-1$. We globally
 (not consider $j$) adaptively update the value of the scaling parameter
-$\delta_{\underline{\varphi}_{l}}$ during the burn-in period using the
+$`\delta_{\underline{\varphi}_{l}}`$ during the burn-in period using the
 same design for $\sigma_{l}^{2}$ discussed before.
 
 The last dozen of parameters to be updated are the coefficient matrices
-$\boldsymbol{B}_{1},...,\boldsymbol{B}_{p}$ of the parametric working
+$`\boldsymbol{B}_{1},...,\boldsymbol{B}_{p}`$ of the parametric working
 model. To do that, we apply the multivariate normal random walk for the
-full conditional for $\boldsymbol{B}_{j}^{*,(i+1)}$ in the MH step,
+full conditional for $`\boldsymbol{B}_{j}^{*,(i+1)}`$ in the MH step,
 $j=1,...,p$ as
-$$\boldsymbol{B}_{j}^{*,(i+1)}|\underline{\tilde{\Theta}}_{\mathbf{\Phi}}^{(i+1)},k^{(i+1)}\sim N(\boldsymbol{B}_{j}^{(i)},\boldsymbol{V}),$$
+```math
+\boldsymbol{B}_{j}^{*,(i+1)}|\underline{\tilde{\Theta}}_{\mathbf{\Phi}}^{(i+1)},k^{(i+1)}\sim N(\boldsymbol{B}_{j}^{(i)},\boldsymbol{V}),
+```
 with the covariance matrix $\boldsymbol{V}$ being globally adaptively
 updated during the burn-in period by the same idea as $\sigma_{l}^{2}$
 and $\delta_{\underline{\varphi}}$.
