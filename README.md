@@ -132,7 +132,7 @@ acceptance rates
 ```math
 s_{r_{l}}^{(i+1)}=\begin{dcases}
         s_{r_{l}}^{(i)}+\delta_{\text{adapt}}^{(i)},\quad a_{r_{l},M}^{(i)}>a^{*},\\
-        s_{r_{l}}^{(i)}-\delta_{\text{adapt}}^{(i)},\quad a_{r_{l},M}^{(i)}<a^{*},
+        s_{r_{l}}^{(i)}-\delta_{\text{adapt}}^{(i)},\quad a_{r_{l},M}^{(i)}< a^{*},
     \end{dcases}
 ```
 with $a_{r_{l},M}^{(i)}$ being the acceptance rate
