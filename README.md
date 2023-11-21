@@ -9,8 +9,6 @@ approach proposed for multivariate Bayesian spectral inference. The
 execution of this approach is on R, while the core functions used in the
 algorithm are written on C++ to enhance the performance.
 
-The reference of the VNPC approach is on arXiv
-<https://arxiv.org/abs/2306.04966>.
 
 # 2 A Metropolis-within-Gibbs algorithm
 
